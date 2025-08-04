@@ -68,7 +68,8 @@ public class Recipe {
     }
 
     // Overloaded constructor to initialize all attributes at once
-    public Recipe(String recipeName, int servings, ArrayList<Ingredient> recipeIngredients, double totalRecipeCalories) {
+    public Recipe(String recipeName, int servings, ArrayList<Ingredient> recipeIngredients,
+            double totalRecipeCalories) {
         this.recipeName = recipeName;
         this.servings = servings;
         this.recipeIngredients = recipeIngredients;
@@ -85,6 +86,29 @@ public class Recipe {
      * 3. Adjust totalRecipeCalories accordingly.
      * 4. Optionally update servings to reflect scaled size.
      */
+
+    public void scaleRecipe(double scaleFactor) {
+        // Check if scaleFactor is valid
+        if (scaleFactor <= 0) {
+            System.out.println("Scale factor must be greater than 0.");
+            return;
+        }
+        // Scale the servings
+
+        this.servings = (int) Math.round(this.servings * scaleFactor);
+
+        // Scale each ingredient's amount and update total calories
+        for (Ingredient ingredient : recipeIngredients) {
+            // Scale the amount of each ingredient
+            ingredient.setAmount(ingredient.getIngredientAmount() * (float) scaleFactor);
+            // Update total calories for the recipe
+            this.totalRecipeCalories += ingredient.getCaloriesPerUnit() * ingredient.getIngredientAmount();
+        }
+        // Print confirmation of scaling
+        System.out.println("Recipe scaled by a factor of " + scaleFactor + ".");
+        System.out.println("New servings: " + this.servings);
+        System.out.println("Total recipe calories: " + this.totalRecipeCalories);
+    }
 
     /**
      * Prompts the user for input to create a new recipe, including the name,
@@ -133,7 +157,8 @@ public class Recipe {
         final int MAX_INGREDIENTS = 50;
 
         // Prompt for number of ingredients
-        System.out.print("Enter the number of ingredients (Must be between: " + MIN_INGREDIENTS + " and " + MAX_INGREDIENTS + "): ");
+        System.out.print("Enter the number of ingredients (Must be between: " + MIN_INGREDIENTS + " and "
+                + MAX_INGREDIENTS + "): ");
         int numIngredients = 0;
 
         // Validate input is an integer and greater than 0
@@ -144,7 +169,8 @@ public class Recipe {
                 if (numIngredients >= MIN_INGREDIENTS && numIngredients < MAX_INGREDIENTS) {
                     break; // Valid input
                 } else {
-                    System.out.print("Number of ingredients must be greater than " + MIN_INGREDIENTS + " and less than " + MAX_INGREDIENTS + " Try again: ");
+                    System.out.print("Number of ingredients must be greater than " + MIN_INGREDIENTS + " and less than "
+                            + MAX_INGREDIENTS + " Try again: ");
                 }
             } else {
                 System.out.print("Invalid input. Please enter a whole number: ");
