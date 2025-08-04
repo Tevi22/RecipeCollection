@@ -72,6 +72,9 @@ public class Ingredient {
         return ingredientAmount;
     }
 
+    public void setAmount(float ingredientAmount) {
+        this.ingredientAmount = ingredientAmount;
+    }
     /**
      * Gets the unit of measurement.
      * 
@@ -81,6 +84,10 @@ public class Ingredient {
         return unitMeasurement;
     }
 
+    public void setUnitMeasurement(String unitMeasurement) {
+        this.unitMeasurement = unitMeasurement;
+    }
+
     /**
      * Gets the number of calories per unit.
      * 
@@ -88,6 +95,10 @@ public class Ingredient {
      */
     public int getCaloriesPerUnit() {
         return numberCaloriesPerUnit;
+    }
+
+    public void setCaloriesPerUnit(int numberCaloriesPerUnit) {
+        this.numberCaloriesPerUnit = numberCaloriesPerUnit;
     }
 
     /**
