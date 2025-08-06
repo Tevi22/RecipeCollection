@@ -176,6 +176,7 @@ public class Recipe {
                 System.out.print("Invalid input. Please enter a whole number: ");
                 scrn.next(); // Clear invalid input
             }
+
         }
 
         // Initialize ingredient list and total calories
@@ -263,6 +264,8 @@ public class Recipe {
         System.out.println("Recipe created successfully!");
         System.out.println("");
 
+        //Close the scanner
+        scrn.close();
     }
 
     // Method to print the recipe details
