@@ -43,43 +43,32 @@ public class Main {
                     break;
 
                 case 4:
-                    // Show all recipes so the user can choose
-                    System.out.println("Select a recipe to scale:");
-                    for (int i = 0; i < listOfRecipes.size(); i++) {
-                        System.out.println((i + 1) + ". " + listOfRecipes.get(i).getRecipeName());
-                    }
-
-                    // Get user's choice
-                    int recipeIndex = -1;
-                    while (recipeIndex < 1 || recipeIndex > listOfRecipes.size()) {
-                        System.out.print("Enter recipe number: ");
-                            if (scnr.hasNextInt()) {
-                            recipeIndex = scnr.nextInt();
-                        } else {
-                        System.out.println("Invalid input. Please enter a number.");
-                        scnr.next(); // clear invalid input
+                    System.out.print("Enter the name of the recipe to view: ");
+                    String recipeToScale = scnr.nextLine();
+                    Recipe recipe = null;
+                    for (Recipe r : myRecipeBox.getListOfRecipes()) {
+                        if (r.getRecipeName().equalsIgnoreCase(recipeToScale)) {
+                            recipe = r;
+                            break;
                         }
                     }
+                    if (recipe != null) {
+                        System.out.print("Enter the scale factor (e.g., 2 for double, 0.5 for half): ");
+                        double scaleFactor;
+                        while (!scnr.hasNextDouble()) {
 
-                    // Ask for scale factor
-                    double scaleFactor = 0;
-                    while (scaleFactor <= 0) {
-                        System.out.print("Enter scale factor (e.g., 2.0 for double, 0.5 for half): ");
-                        if (scnr.hasNextDouble()) {
-                            scaleFactor = scnr.nextDouble();
-                            if (scaleFactor <= 0) {
-                                System.out.println("Scale factor must be greater than zero.");
-                            }
-                        } else {
-                            System.out.println("Invalid input. Please enter a number.");
-                            scnr.next(); // clear invalid input
+                            System.out.print("Invalid input. Enter a valid scale factor: ");
+                            scnr.next();
                         }
-                    }
-
-                    // Scale the selected recipe
-                    listOfRecipes.get(recipeIndex - 1).scaleRecipe(scaleFactor);
+                        scaleFactor = scnr.nextDouble();
+                        scnr.nextLine(); // consume newline
+                        recipe.scaleRecipe(scaleFactor);
+                        System.out.println("Recipe scaled successfully.");
+                    } else {
+                        System.out.println("Recipe not found.");
+                    }   
                     break;
-
+                    
                 case 5:
                     quit = true;
                     System.out.println("Exiting Recipe Box. Goodbye!");
