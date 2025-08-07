@@ -93,21 +93,37 @@ public class Recipe {
             System.out.println("Scale factor must be greater than 0.");
             return;
         }
-        // Scale the servings
 
+        // Scale the servings
         this.servings = (int) Math.round(this.servings * scaleFactor);
 
-        // Scale each ingredient's amount and update total calories
-        for (Ingredient ingredient : recipeIngredients) {
-            // Scale the amount of each ingredient
-            ingredient.setAmount(ingredient.getIngredientAmount() * (float) scaleFactor);
-            // Update total calories for the recipe
-            this.totalRecipeCalories += ingredient.getCaloriesPerUnit() * ingredient.getIngredientAmount();
-        }
+        // Reset total calories for the scaled recipe
+        this.totalRecipeCalories = 0.0;
+
         // Print confirmation of scaling
         System.out.println("Recipe scaled by a factor of " + scaleFactor + ".");
         System.out.println("New servings: " + this.servings);
+
+        // Scale each ingredient's amount and update total calories
+        int count = 1;
+        for (Ingredient ingredient : recipeIngredients) {
+            // Scale the amount of each ingredient
+            ingredient.setAmount(ingredient.getIngredientAmount() * (float) scaleFactor);
+            
+            // Update total calories for the recipe
+            this.totalRecipeCalories += ingredient.getCaloriesPerUnit() * ingredient.getIngredientAmount();
+
+            // Print the scaled ingredient details
+            System.out.println("Ingredient " + count + ": " + ingredient.getIngredientName() + ", "
+                    + ingredient.getIngredientAmount() + " " + ingredient.getUnitMeasurement() + ", "
+                    + ingredient.getCaloriesPerUnit() + " calories per unit.");
+            count++;
+        }
+        
+        // Print the total calories for the scaled recipe
         System.out.println("Total recipe calories: " + this.totalRecipeCalories);
+        System.out.println();
+        
     }
 
     /**
