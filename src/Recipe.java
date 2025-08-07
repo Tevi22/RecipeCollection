@@ -106,6 +106,7 @@ public class Recipe {
 
         // Scale each ingredient's amount and update total calories
         int count = 1;
+        //FIXME: Print statement for each ingredient with the new amount and calories
         for (Ingredient ingredient : recipeIngredients) {
             // Scale the amount of each ingredient
             ingredient.setAmount(ingredient.getIngredientAmount() * (float) scaleFactor);
