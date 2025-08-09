@@ -102,29 +102,38 @@ public class Recipe {
 
         // Print confirmation of scaling
         System.out.println("Recipe scaled by a factor of " + scaleFactor + ".");
+        System.out.println("");
+        System.out.println("Recipe:" + this.recipeName);
         System.out.println("New servings: " + this.servings);
 
         // Scale each ingredient's amount and update total calories
         int count = 1;
-        //FIXME: Print statement for each ingredient with the new amount and calories
+        System.out.println("Number of ingredients: " + recipeIngredients.size());
+        
+
         for (Ingredient ingredient : recipeIngredients) {
             // Scale the amount of each ingredient
-            ingredient.setAmount(ingredient.getIngredientAmount() * (float) scaleFactor);
-            
-            // Update total calories for the recipe
-            this.totalRecipeCalories += ingredient.getCaloriesPerUnit() * ingredient.getIngredientAmount();
+            float newAmount = ingredient.getIngredientAmount() * (float) scaleFactor;
+            ingredient.setAmount(newAmount);
+
+            // Calculate calories for this ingredient after scaling
+            double ingredientCalories = newAmount * ingredient.getCaloriesPerUnit();
+
+            // Add to total recipe calories
+            this.totalRecipeCalories += ingredientCalories;
 
             // Print the scaled ingredient details
-            System.out.println("Ingredient " + count + ": " + ingredient.getIngredientName() + ", "
-                    + ingredient.getIngredientAmount() + " " + ingredient.getUnitMeasurement() + ", "
-                    + ingredient.getCaloriesPerUnit() + " calories per unit.");
+            System.out.println(count + ": " + ingredient.getIngredientName() +
+                " scaled to " + newAmount + " " + ingredient.getUnitMeasurement());
+
+            // Increment the counter for the next ingredient
             count++;
         }
-        
+
         // Print the total calories for the scaled recipe
         System.out.println("Total recipe calories: " + this.totalRecipeCalories);
         System.out.println();
-        
+
     }
 
     /**
@@ -281,8 +290,7 @@ public class Recipe {
         System.out.println("Recipe created successfully!");
         System.out.println("");
 
-        //Close the scanner
-        scrn.close();
+
     }
 
     // Method to print the recipe details
