@@ -11,6 +11,7 @@ public class Recipe_Test {
     /**
      * Main method to test Recipe creation and display.
      * Demonstrates both hardcoded and user-input-based recipe generation.
+     * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
         System.out.println("Testing started");

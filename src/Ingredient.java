@@ -6,28 +6,25 @@
  */
 
 public class Ingredient {
-    // String is used for ingredient name and unit, which are textual values
+    /** String is used for ingredient name and unit, which are textual values */
     String nameOfIngredient = "";
+
+    /** String is used for unit of measurement, such as "cups", "tsp", etc. */
     String unitMeasurement = "";
 
-    // float for decimal values such as 1.5 cups
+    /** float for decimal values such as 1.5 cups */
     float ingredientAmount = 0.00f;
 
-    // int is used since calories per unit are whole numbers
+    /** int is used since calories per unit are whole numbers */
     int numberCaloriesPerUnit = 0;
 
-    // float to store the result of amount * calories per unit
+    /** float for total calories, which can be a decimal value */
     float totalCalories = 0.00f;
 
-    /*
-     * Default constructor initializes with default values
-     * * @param ingredientName the name of the ingredient
-     * 
-     * @param ingredientAmount the amount of the ingredient
-     * 
-     * @param unitMeasurement the unit of measurement (e.g., cups, tsp)
-     * 
-     * @param caloriesPerUnit the number of calories per unit
+    // Default constructor to initialize the ingredient with default values
+    /**
+     * Default constructor initializes the ingredient with empty values and zero
+     * amounts.
      */
     public Ingredient() {
         this.nameOfIngredient = "";
@@ -39,11 +36,12 @@ public class Ingredient {
     /**
      * Constructs a new Ingredient with the given properties.
      * 
-     * @param ingredientName   the name of the ingredient
+     * @param nameOfIngredient   the name of the ingredient
      * @param ingredientAmount the amount of the ingredient
      * @param unitMeasurement  the unit of measurement (e.g., cups, tsp)
-     * @param caloriesPerUnit  the number of calories per unit
+     * @param numberCaloriesPerUnit  the number of calories per unit
      */
+    // Constructor to initialize the ingredient with specific values
     public Ingredient(String nameOfIngredient, float ingredientAmount, String unitMeasurement,
             int numberCaloriesPerUnit) {
         this.nameOfIngredient = nameOfIngredient;
@@ -72,6 +70,11 @@ public class Ingredient {
         return ingredientAmount;
     }
 
+    /**
+     * Sets the amount of the ingredient.
+     * 
+     * @param ingredientAmount the new amount of the ingredient
+     */
     public void setAmount(float ingredientAmount) {
         this.ingredientAmount = ingredientAmount;
     }
@@ -84,6 +87,11 @@ public class Ingredient {
         return unitMeasurement;
     }
 
+    /**
+     * Sets the unit of measurement.
+     * 
+     * @param unitMeasurement the new unit of measurement (e.g., "cups")
+     */
     public void setUnitMeasurement(String unitMeasurement) {
         this.unitMeasurement = unitMeasurement;
     }
@@ -97,6 +105,11 @@ public class Ingredient {
         return numberCaloriesPerUnit;
     }
 
+    /**
+     * Sets the number of calories per unit.
+     * 
+     * @param numberCaloriesPerUnit the new number of calories per unit
+     */
     public void setCaloriesPerUnit(int numberCaloriesPerUnit) {
         this.numberCaloriesPerUnit = numberCaloriesPerUnit;
     }

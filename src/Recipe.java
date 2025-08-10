@@ -1,64 +1,110 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents a recipe that contains a name, number of servings,
+ * and a list of ingredients.
+ * Provides methods to add ingredients, calculate total calories,
+ * and print the recipe details.
+ */
+
 public class Recipe {
-    // Class variable to store the recipe name
+
+    /** The name of the recipe. */
     private String recipeName;
 
-    // Variable to store how many servings the recipe makes
+    /** The number of servings this recipe makes. */
     private int servings = 0;
 
-    // ArrayList to hold the list of ingredient names
+    /** The list of ingredients in the recipe. */
     private ArrayList<Ingredient> recipeIngredients = new ArrayList<Ingredient>();
 
-    // Variable to hold the total calories for the recipe
+    /**The variable to hold the total calories for the recipe */
     private double totalRecipeCalories = 0.0;
 
     /**
      * Getter and setter methods for each class attribute.
      */
 
-    // Setter method for recipeName
+   /**
+     * Sets the name of the recipe.
+     *
+     * @param recipeName the new name of the recipe
+     */
     public void setRecipeName(String recipeName) {
         this.recipeName = recipeName;
     }
 
-    // Getter method for recipeName
+     /**
+     * Gets the name of the recipe.
+     *
+     * @return the recipe name
+     */
     public String getRecipeName() {
         return recipeName;
     }
 
-    // Setter method for servings
+    /**
+     * Sets the number of servings for this recipe.
+     *
+     * @param servings the new number of servings
+     */
     public void setServings(int servings) {
         this.servings = servings;
     }
 
-    // Getter method for servings
+    /**
+     * Gets the number of servings for this recipe.
+     *
+     * @return the number of servings
+     */
     public int getServings() {
         return servings;
     }
 
-    // Setter method for recipeIngredient
+
+    /**
+     * Sets the list of ingredients for this recipe.
+     *
+     * @param ingredients the new list of ingredients
+     */
     public void setRecipeIngredients(ArrayList<Ingredient> ingredients) {
         this.recipeIngredients = ingredients;
     }
 
     // Getter method for recipeIngredients
+    /**
+     * Gets the list of ingredients for this recipe.
+     *
+     * @return the list of ingredients
+     */
     public ArrayList<Ingredient> getRecipeIngredients() {
         return recipeIngredients;
     }
 
     // Setter method for totalRecipeCalories
+    /**
+     * Sets the total calories for this recipe.
+     *
+     * @param TotalCalories the new total calories for the recipe
+     */
     public void setTotalRecipeCalories(double TotalCalories) {
         totalRecipeCalories = TotalCalories;
     }
 
     // Getter method for totalRecipeCalories
+    /**
+     * Gets the total calories for this recipe.
+     *
+     * @return the total calories for the recipe
+     */
     public double getTotalRecipeCalories() {
         return totalRecipeCalories;
     }
 
-    // Default constructor initializes with default values
+    /**
+     * Default constructor that creates an empty recipe with no name or ingredients.
+     */
     public Recipe() {
         this.recipeName = "";
         this.servings = 0; // <--- assignment value with appropriate data type
@@ -67,7 +113,14 @@ public class Recipe {
 
     }
 
-    // Overloaded constructor to initialize all attributes at once
+    /**
+     * Parameterized constructor that creates a recipe with the given name and servings.
+     *
+     * @param recipeName the name of the recipe
+     * @param servings   the number of servings this recipe makes
+     * @param recipeIngredients the list of ingredients in the recipe
+     * @param totalRecipeCalories the total calories for the recipe
+     */
     public Recipe(String recipeName, int servings, ArrayList<Ingredient> recipeIngredients,
             double totalRecipeCalories) {
         this.recipeName = recipeName;
@@ -87,6 +140,12 @@ public class Recipe {
      * 4. Optionally update servings to reflect scaled size.
      */
 
+    // Method to scale the recipe by a given factor
+    /**
+     * Scales the recipe by a given factor, adjusting the ingredient amounts and
+     * total calories accordingly.  
+     * @param scaleFactor the factor by which to scale the recipe
+     */
     public void scaleRecipe(double scaleFactor) {
         // Check if scaleFactor is valid
         if (scaleFactor <= 0) {
@@ -110,7 +169,7 @@ public class Recipe {
         int count = 1;
         System.out.println("Number of ingredients: " + recipeIngredients.size());
         
-
+        // Loop through each ingredient in the recipe
         for (Ingredient ingredient : recipeIngredients) {
             // Scale the amount of each ingredient
             float newAmount = ingredient.getIngredientAmount() * (float) scaleFactor;
@@ -151,20 +210,26 @@ public class Recipe {
         // Prompt for recipe name
         System.out.print("Enter the name of the recipe: ");
         String inputName = scrn.nextLine();
+
+        // Checks that recipe name is not blank
         while (inputName.isEmpty()) {
             System.out.print("Recipe name cannot be blank. Please enter a valid name: ");
             inputName = scrn.nextLine();
         }
+
+        // Set the recipe name
         this.recipeName = inputName;
 
         // Prompt for number of servings
         System.out.print("Enter the number of servings: ");
+
         // Checks that input is a integer
         while (!scrn.hasNextInt()) {
             System.out.print("Invalid input. Please enter a number: ");
             scrn.next();
         }
         int inputServings = scrn.nextInt();
+
         // Checks that number of serving are greater than 0 and prompt users to enter
         // integer again
         while (inputServings <= 0) {
@@ -175,6 +240,8 @@ public class Recipe {
             }
             inputServings = scrn.nextInt();
         }
+
+        // Set the number of servings
         this.servings = inputServings;
         scrn.nextLine(); // Consume newline
 
@@ -189,9 +256,13 @@ public class Recipe {
 
         // Validate input is an integer and greater than 0
         while (true) {
+
+            // Check if the next input is an integer
             if (scrn.hasNextInt()) {
                 numIngredients = scrn.nextInt();
                 scrn.nextLine(); // Consume newline
+
+                // Check if the number of ingredients is within the valid range
                 if (numIngredients >= MIN_INGREDIENTS && numIngredients < MAX_INGREDIENTS) {
                     break; // Valid input
                 } else {
@@ -228,6 +299,8 @@ public class Recipe {
                 System.out.print("Invalid input. Please enter a number: ");
                 scrn.next();
             }
+
+            // Read the amount as a float
             float amount = scrn.nextFloat();
 
             // Checks that amount entered is greater than 0 and prompt users to enter float
@@ -238,6 +311,8 @@ public class Recipe {
                     System.out.print("Invalid input. Please enter a number: ");
                     scrn.next();
                 }
+
+                // Read the amount again
                 amount = scrn.nextFloat();
             }
             scrn.nextLine(); // Consume newline
@@ -294,6 +369,10 @@ public class Recipe {
     }
 
     // Method to print the recipe details
+    /**
+     * Prints the recipe name, number of servings, ingredients, and calories per
+     * serving.
+     */
     public void printRecipe() {
         int singleServingCalories = (servings != 0) ? (int) (totalRecipeCalories / servings) : 0;
 
