@@ -34,8 +34,16 @@ public class Recipe_Test {
         assert ing.size() == 2 : "There should be 2 ingredients";
         assert ing.get(0).getIngredientName().equals("Flour") : "First ingredient should be Flour";
         assert ing.get(0).getCaloriesPerUnit() == 110 : "Flour should have 110 calories";
-        assert ing.get(1).getIngredientName().equals("Eggs") : "Second ingredient should be Egg";
+        assert ing.get(1).getIngredientName().equals("Eggs") : "Second ingredient should be Eggs";
         assert ing.get(1).getCaloriesPerUnit() == 70 : "Eggs should have 70 calories";
+
+        //Check Scaling
+        testRecipe.scaleRecipe(0.5f);
+        assert testRecipe.getServings() == 2 : "Serving count should be 2 after scaling";
+        assert testRecipe.getTotalRecipeCalories() == 180 : "Total calories should be 180 after scaling";
+        ing = testRecipe.getRecipeIngredients();
+        assert ing.get(0).getIngredientAmount() == 1.0f : "Flour amount should be 1.0 after scaling";
+        assert ing.get(1).getIngredientAmount() == 1.0f : "Eggs amount should be 1.0 after scaling";
 
         // Print for manual inspection
         testRecipe.printRecipe();
