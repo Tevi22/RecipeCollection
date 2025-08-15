@@ -60,5 +60,35 @@ java -cp src Main
 -Java 17 or later
 -Console or terminal access
 
+## 🚀 Improvement Roadmap
+
+While the current version provides a fully functional recipe management system, there are opportunities for future enhancements:
+
+### Assignment 1: Add Recipe Steps  
+
+- Implement functionality to store **step-by-step cooking instructions** for each recipe.  
+- Add methods to add, edit, and display steps.  
+- Modify the `printRecipe()` method to display steps in order.  
+
+### Assignment 2: Enhanced User Interface  
+
+- Develop a **front-end interface** (e.g., JavaFX or a simple web front-end).  
+- Provide an interactive form for adding recipes, ingredients, and steps.  
+- Improve user experience with better formatting and error handling.  
+
+### Assignment 3: Database Integration  
+
+- Store recipes, ingredients, and steps in a **relational database** (e.g., MySQL or SQLite).  
+- Implement CRUD (Create, Read, Update, Delete) operations.  
+- Enable persistent storage so recipes are saved between program executions.  
+
+### Assignment 4: Advanced Features  
+
+- Add **search and filter functionality** (e.g., by calories, ingredient, or serving size).  
+- Implement recipe **scaling with nutrition recalculation**.  
+- Add export options (e.g., save recipes as PDF, JSON, or CSV).  
+
+---
+
 **Author**
 Tevin Davis – Created for IT 145 Object Oriented Programming Final Project
