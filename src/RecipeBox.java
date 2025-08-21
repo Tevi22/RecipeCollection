@@ -78,4 +78,103 @@ public class RecipeBox {
 			System.out.println("Invalid recipe.");
 		}
 	}
+
+
+	//Add steps to a recipe
+	/**
+	 * Adds steps to an existing recipe by its name.
+	 * 
+	 * @param recipeName the name of the recipe to add steps to
+	 * @param steps      the list of steps to add
+	 */
+	public void addStepsToRecipe(String recipeName, ArrayList<String> steps) {
+		for (Recipe recipe : listOfRecipes) {
+			if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
+				recipe.setRecipeSteps(steps);
+				System.out.println("Steps added to recipe: " + recipeName);
+				return;
+			}
+		}
+		System.out.println("Recipe not found.");
+	}
+
+	//Add tags to a recipe
+	/**
+	 * Adds tags to an existing recipe by its name.
+	 * 
+	 * @param recipeName the name of the recipe to add tags to
+	 * @param tags       the list of tags to add
+	 */
+	public void addTagsToRecipe(String recipeName, ArrayList<String> tags) {
+		for (Recipe recipe : listOfRecipes) {
+			if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
+				recipe.setRecipeTags(tags);
+				System.out.println("Tags added to recipe: " + recipeName);
+				return;
+			}
+		}	
+		System.out.println("Recipe not found.");
+	}
+
+	//Remove a recipe step
+	/**
+	 * Removes a specific step from a recipe by its name.
+	 * 
+	 * @param recipeName the name of the recipe to remove a step from
+	 * @param step       the step to remove
+	 */	
+	public void removeStepFromRecipe(String recipeName, String step) {
+		for (Recipe recipe : listOfRecipes) {
+			if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
+				ArrayList<String> steps = recipe.getRecipeSteps();
+				if (steps.remove(step)) {
+					System.out.println("Step removed from recipe: " + recipeName);
+				} else {
+					System.out.println("Step not found in recipe: " + recipeName);
+				}
+				return;
+			}
+		}
+		System.out.println("Recipe not found.");
+	}
+
+	//Remove a recipe tag
+	/**	 * Removes a specific tag from a recipe by its name.
+	 * 
+	 * @param recipeName the name of the recipe to remove a tag from
+	 * @param tag        the tag to remove
+	 */
+	public void removeTagFromRecipe(String recipeName, String tag) {
+		for (Recipe recipe : listOfRecipes) {
+			if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
+				ArrayList<String> tags = recipe.getRecipeTags();
+				if (tags.remove(tag)) {
+					System.out.println("Tag removed from recipe: " + recipeName);
+				} else {
+					System.out.println("Tag not found in recipe: " + recipeName);
+				}
+				return;
+			}
+		}			
+		System.out.println("Recipe not found.");
+	}
+
+	//Seach by tag
+	/**
+	 * Searches for recipes by a specific tag.
+	 * 
+	 * @param tag the tag to search for
+	 */
+	public void searchRecipesByTag(String tag) {
+		boolean found = false;
+		for (Recipe recipe : listOfRecipes) {
+			if (recipe.getRecipeTags().contains(tag)) {
+				System.out.println("Found recipe with tag '" + tag + "': " + recipe.getRecipeName());
+				found = true;
+			}
+		}
+		if (!found) {
+			System.out.println("No recipes found with tag: " + tag);
+		}
+	}
 }
