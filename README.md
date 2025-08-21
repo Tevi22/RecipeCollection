@@ -64,11 +64,12 @@ java -cp src Main
 
 While the current version provides a fully functional recipe management system, there are opportunities for future enhancements:
 
-### Assignment 1: Add Recipe Steps  
+### Assignment 1: Add Recipe Steps and Tags   
 
-- Implement functionality to store **step-by-step cooking instructions** for each recipe.  
-- Add methods to add, edit, and display steps.  
-- Modify the `printRecipe()` method to display steps in order.  
+- ~~Implement functionality to store **step-by-step cooking instructions** for each recipe.~~
+- ~~Implement functionality to store **Tags** for each recipe.~~
+- ~~Add methods to add, edit, and display steps.~~  
+- ~~Modify the `printRecipe()` method to display steps in order.~~  
 
 ### Assignment 2: Enhanced User Interface  
 
