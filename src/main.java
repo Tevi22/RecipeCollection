@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -33,10 +34,13 @@ public class Main {
             // Display the menu options to the user
             System.out.println("\nMenu:");
             System.out.println("1. Add a new recipe");
-            System.out.println("2. List all recipe names");
-            System.out.println("3. View a recipe");
-            System.out.println("4. Scale a recipe"); // Custom method to scale recipe ingredients
-            System.out.println("5. Quit");
+            System.out.println("2. Add steps to a recipe");
+            System.out.println("3. Add tags to a recipe");
+            System.out.println("4. List all recipe names");
+            System.out.println("5. View a recipe");
+            System.out.println("6. Seach recipes by tag");
+            System.out.println("7. Scale a recipe"); // Custom method to scale recipe ingredients
+            System.out.println("8. Quit");
             System.out.print("Enter choice: ");
 
             // Read user input for menu choice
@@ -45,7 +49,7 @@ public class Main {
 
             // Validate input is an integer and within the range of menu options
             while (!scnr.hasNextInt()) {
-                System.out.print("Invalid input. Enter a number between 1 and 4: ");
+                System.out.print("Invalid input. Enter a number between 1 and 8: ");
                 scnr.next();
             }
 
@@ -60,14 +64,42 @@ public class Main {
                     // Create new recipe using the createNewRecipe() method from Recipe class
                     myRecipeBox.addNewRecipe();
                     break;
-
+                
                 case 2:
+                    // Add steps to a recipe using the addSteps() method from Recipe class
+                    System.out.print("Enter the name of the recipe to add steps to: ");
+                    String recipeToAddSteps = scnr.nextLine();
+                    System.out.print("Enter steps (comma-separated): ");
+                    String stepsInput = scnr.nextLine();
+                    String[] stepsArray = stepsInput.split(",");
+                    ArrayList<String> stepsList = new ArrayList<>();
+                    for (String step : stepsArray) {
+                        stepsList.add(step.trim());
+                    }
+                    myRecipeBox.addStepsToRecipe(recipeToAddSteps, stepsList);
+                    break;
+
+                case 3:
+                    // Add tags to a recipe using the addTags() method from Recipe class
+                    System.out.print("Enter the name of the recipe to add tags to: ");
+                    String recipeToAddTags = scnr.nextLine();
+                    System.out.print("Enter tags (comma-separated): ");
+                    String tagsInput = scnr.nextLine();
+                    String[] tagsArray = tagsInput.split(",");
+                    ArrayList<String> tagsList = new ArrayList<>();
+                    for (String tag : tagsArray) {
+                        tagsList.add(tag.trim());
+                    }
+                    myRecipeBox.addTagsToRecipe(recipeToAddTags, tagsList);
+                    break;
+
+                case 4:
                     // Print all recipe names using the printAllRecipeNames() method from RecipeBox
                     // class
                     myRecipeBox.printAllRecipeNames();
                     break;
 
-                case 3:
+                case 5:
                     // Print details of a specific recipe using the printAllRecipeDetails() method
                     // from RecipeBox class
                     System.out.print("Enter the name of the recipe to view: ");
@@ -75,7 +107,14 @@ public class Main {
                     myRecipeBox.printAllRecipeDetails(selectedRecipeName);
                     break;
 
-                case 4:
+                case 6:
+                    // Search recipes by tag using the searchByTag() method from RecipeBox class
+                    System.out.print("Enter the tag to search for: ");
+                    String tagToSearch = scnr.nextLine();   
+                    myRecipeBox.searchRecipesByTag(tagToSearch);
+                    break;
+
+                case 7:
                     // Scale a recipe using the scaleRecipe() method from Recipe class
                     System.out.print("Enter the name of the recipe to view: ");
                     String recipeToScale = scnr.nextLine();
@@ -103,7 +142,7 @@ public class Main {
                     }
                     break;
 
-                case 5:
+                case 8:
                     // Set quit to true to exit the loop and end the program
                     quit = true;
                     System.out.println("Exiting Recipe Box. Goodbye!");
