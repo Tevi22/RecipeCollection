@@ -19,14 +19,20 @@ public class Recipe {
     /** The list of ingredients in the recipe. */
     private ArrayList<Ingredient> recipeIngredients = new ArrayList<Ingredient>();
 
-    /**The variable to hold the total calories for the recipe */
+    /** The steps to prepare the recipe. */
+    private ArrayList<String> recipeSteps = new ArrayList<>();
+
+    /** The tags associated with the recipe, such as "vegan", "gluten-free", etc. */
+    private ArrayList<String> recipeTags = new ArrayList<>();
+
+    /** The variable to hold the total calories for the recipe */
     private double totalRecipeCalories = 0.0;
 
     /**
      * Getter and setter methods for each class attribute.
      */
 
-   /**
+    /**
      * Sets the name of the recipe.
      *
      * @param recipeName the new name of the recipe
@@ -35,7 +41,7 @@ public class Recipe {
         this.recipeName = recipeName;
     }
 
-     /**
+    /**
      * Gets the name of the recipe.
      *
      * @return the recipe name
@@ -62,7 +68,6 @@ public class Recipe {
         return servings;
     }
 
-
     /**
      * Sets the list of ingredients for this recipe.
      *
@@ -82,12 +87,53 @@ public class Recipe {
         return recipeIngredients;
     }
 
+    /**
+     * Sets the steps for preparing this recipe.
+     *
+     * @param steps the new steps for the recipe
+     */
+    // Setter method for recipeSteps
+    public void setRecipeSteps(ArrayList<String> steps) {
+        this.recipeSteps = steps;
+    }
+
+    /**
+     * Gets the steps for preparing this recipe.
+     *
+     * @return the list of steps
+     */
+    // Getter method for recipeSteps
+    public ArrayList<String> getRecipeSteps() {
+        return recipeSteps;
+    }
+
+    /**
+     * Sets the tags for this recipe.
+     *
+     * @param tags the new tags for the recipe
+     */
+    // Getter method for recipeTags
+    public void setRecipeTags(ArrayList<String> tags) {
+        this.recipeTags = tags;
+    }
+
+    /**
+     * Gets the tags for this recipe.
+     *
+     * @return the list of tags
+     */
+    // Getter method for recipeTags
+    public ArrayList<String> getRecipeTags() {
+        return recipeTags;
+    }
+
     // Setter method for totalRecipeCalories
     /**
      * Sets the total calories for this recipe.
      *
      * @param TotalCalories the new total calories for the recipe
      */
+    // Setter method for totalRecipeCalories
     public void setTotalRecipeCalories(double TotalCalories) {
         totalRecipeCalories = TotalCalories;
     }
@@ -98,6 +144,7 @@ public class Recipe {
      *
      * @return the total calories for the recipe
      */
+    // Getter method for totalRecipeCalories
     public double getTotalRecipeCalories() {
         return totalRecipeCalories;
     }
@@ -109,24 +156,29 @@ public class Recipe {
         this.recipeName = "";
         this.servings = 0; // <--- assignment value with appropriate data type
         this.recipeIngredients = new ArrayList<Ingredient>(); // <-- assignment value for empty ArrayList
+        this.recipeSteps = new ArrayList<String>();
+        this.recipeTags = new ArrayList<String>();
         this.totalRecipeCalories = 0;
 
     }
 
     /**
-     * Parameterized constructor that creates a recipe with the given name and servings.
+     * Parameterized constructor that creates a recipe with the given name and
+     * servings.
      *
-     * @param recipeName the name of the recipe
-     * @param servings   the number of servings this recipe makes
-     * @param recipeIngredients the list of ingredients in the recipe
+     * @param recipeName          the name of the recipe
+     * @param servings            the number of servings this recipe makes
+     * @param recipeIngredients   the list of ingredients in the recipe
      * @param totalRecipeCalories the total calories for the recipe
      */
     public Recipe(String recipeName, int servings, ArrayList<Ingredient> recipeIngredients,
-            double totalRecipeCalories) {
+            double totalRecipeCalories, ArrayList<String> recipeSteps, ArrayList<String> recipeTags) {
         this.recipeName = recipeName;
         this.servings = servings;
         this.recipeIngredients = recipeIngredients;
         this.totalRecipeCalories = totalRecipeCalories;
+        this.recipeSteps = recipeSteps;
+        this.recipeTags = recipeTags;
     }
 
     // Pseudocode for custom method: scaleRecipe(double scaleFactor)
@@ -143,7 +195,8 @@ public class Recipe {
     // Method to scale the recipe by a given factor
     /**
      * Scales the recipe by a given factor, adjusting the ingredient amounts and
-     * total calories accordingly.  
+     * total calories accordingly.
+     * 
      * @param scaleFactor the factor by which to scale the recipe
      */
     public void scaleRecipe(double scaleFactor) {
@@ -168,7 +221,7 @@ public class Recipe {
         // Scale each ingredient's amount and update total calories
         int count = 1;
         System.out.println("Number of ingredients: " + recipeIngredients.size());
-        
+
         // Loop through each ingredient in the recipe
         for (Ingredient ingredient : recipeIngredients) {
             // Scale the amount of each ingredient
@@ -183,7 +236,7 @@ public class Recipe {
 
             // Print the scaled ingredient details
             System.out.println(count + ": " + ingredient.getIngredientName() +
-                " scaled to " + newAmount + " " + ingredient.getUnitMeasurement());
+                    " scaled to " + newAmount + " " + ingredient.getUnitMeasurement());
 
             // Increment the counter for the next ingredient
             count++;
@@ -357,14 +410,43 @@ public class Recipe {
             ingredientsList.add(ingredient);
             totalCalories += ingredientTotalCalories;
         }
-
         // Set the instance variables
         this.recipeIngredients = ingredientsList;
         this.totalRecipeCalories = totalCalories;
 
+        // Prompt for recipe steps
+        System.out.println("Enter the steps to prepare the recipe (type 'done' when finished):");
+        ArrayList<String> stepsList = new ArrayList<>();
+        while (true) {
+            String step = scrn.nextLine();
+            if (step.equalsIgnoreCase("done")) {
+                break; // Exit loop when user types 'done'
+            }
+            // Add the step to the list
+            stepsList.add(step);
+        }
+        // Set the recipe steps
+        this.recipeSteps = stepsList;
+
+        //Prompt for recipe tags
+        System.out.println("Enter tags for the recipe (comma-separated, e.g., vegan, gluten-free):");
+        String tagsInput = scrn.nextLine();
+        // Split the input by commas and trim whitespace
+        String[] tagsArray = tagsInput.split(",");
+        ArrayList<String> tagsList = new ArrayList<>();
+        for (String tag : tagsArray) {
+            // Trim whitespace and add to the list if not empty
+            String trimmedTag = tag.trim();
+            if (!trimmedTag.isEmpty()) {
+                tagsList.add(trimmedTag);
+            }
+        }
+        // Set the recipe tags
+        this.recipeTags = tagsList;
+
+
         System.out.println("Recipe created successfully!");
         System.out.println("");
-
 
     }
 
@@ -391,6 +473,23 @@ public class Recipe {
 
             // Increment the counter for the next ingredient
             count++;
+        }
+
+        // Print recipe steps if available
+        if (!recipeSteps.isEmpty()) {
+            System.out.println("Steps to prepare:");
+            for (int i = 0; i < recipeSteps.size(); i++) {
+                System.out.println((i + 1) + ": " + recipeSteps.get(i));
+            }
+        } else {
+            System.out.println("No preparation steps provided.");
+        }
+
+        // Print recipe tags if available
+        if (!recipeTags.isEmpty()) {
+            System.out.println("Tags: " + String.join(", ", recipeTags));
+        } else {
+            System.out.println("No tags provided.");
         }
 
         // Print calories per serving
