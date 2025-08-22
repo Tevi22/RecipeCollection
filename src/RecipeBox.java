@@ -177,4 +177,60 @@ public class RecipeBox {
 			System.out.println("No recipes found with tag: " + tag);
 		}
 	}
+
+	//Remove steps from a recipe
+	/**
+	 * Removes multiple steps from a recipe by its name.
+	 * 
+	 * @param recipeName the name of the recipe to remove steps from
+	 * @param steps      the list of steps to remove
+	 */
+	public void removeStepsFromRecipe(String recipeName, ArrayList<String> steps) {
+		for (Recipe recipe : listOfRecipes) {
+			if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
+				ArrayList<String> currentSteps = recipe.getRecipeSteps();
+				boolean anyRemoved = false;
+				for (String step : steps) {
+					if (currentSteps.remove(step)) {
+						anyRemoved = true;
+					}
+				}
+				if (anyRemoved) {
+					System.out.println("Steps removed from recipe: " + recipeName);
+				} else {
+					System.out.println("No matching steps found in recipe: " + recipeName);
+				}
+				return;
+			}
+		}
+		System.out.println("Recipe not found.");
+	}
+
+	//Remove tags from a recipe
+	/**
+	 * Removes multiple tags from a recipe by its name.
+	 * 
+	 * @param recipeName the name of the recipe to remove tags from
+	 * @param tags       the list of tags to remove
+	 */
+	public void removeTagsFromRecipe(String recipeName, ArrayList<String> tags) {
+		for (Recipe recipe : listOfRecipes) {
+			if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
+				ArrayList<String> currentTags = recipe.getRecipeTags();
+				boolean anyRemoved = false;
+				for (String tag : tags) {
+					if (currentTags.remove(tag)) {
+						anyRemoved = true;
+					}
+				}
+				if (anyRemoved) {
+					System.out.println("Tags removed from recipe: " + recipeName);
+				} else {
+					System.out.println("No matching tags found in recipe: " + recipeName);
+				}
+				return;
+			}
+		}	
+		System.out.println("Recipe not found.");
+	}
 }
