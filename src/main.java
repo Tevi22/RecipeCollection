@@ -41,8 +41,9 @@ public class Main {
             System.out.println("6. List all recipe names");
             System.out.println("7. View a recipe");
             System.out.println("8. Seach recipes by tag");
-            System.out.println("9. Scale a recipe"); // Custom method to scale recipe ingredients
-            System.out.println("10. Quit");
+            System.out.println("9. Search recipes by calorie range");
+            System.out.println("10. Scale a recipe"); // Custom method to scale recipe ingredients
+            System.out.println("11. Quit");
             System.out.print("Enter choice: ");
 
             // Read user input for menu choice
@@ -139,6 +140,28 @@ public class Main {
                     break;
 
                 case 9:
+                    // Search recipes by calorie range using the searchByCalorieRange() method from RecipeBox
+                    // class
+                    System.out.print("Enter minimum calories: ");
+                    double minCalorieRange;
+                    while (!scnr.hasNextDouble()) {
+                        System.out.print("Invalid input. Enter a valid minimum calorie range: ");
+                        scnr.next();
+                    }
+                    minCalorieRange = scnr.nextDouble();
+                    scnr.nextLine(); // consume newline
+                    System.out.print("Enter maximum calories: ");
+                    double maxCalorieRange;
+                    while (!scnr.hasNextDouble()) {
+                        System.out.print("Invalid input. Enter a valid maximum calorie range: ");
+                        scnr.next();
+                    }
+                    maxCalorieRange = scnr.nextDouble();
+                    scnr.nextLine(); // consume newline
+                    myRecipeBox.searchRecipesByCalorieRange(minCalorieRange, maxCalorieRange);
+                    break;
+
+                case 10:
                     // Scale a recipe using the scaleRecipe() method from Recipe class
                     System.out.print("Enter the name of the recipe to view: ");
                     String recipeToScale = scnr.nextLine();
@@ -166,7 +189,7 @@ public class Main {
                     }
                     break;
 
-                case 10:
+                case 11:
                     // Set quit to true to exit the loop and end the program
                     quit = true;
                     System.out.println("Exiting Recipe Box. Goodbye!");
