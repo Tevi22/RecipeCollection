@@ -36,11 +36,13 @@ public class Main {
             System.out.println("1. Add a new recipe");
             System.out.println("2. Add steps to a recipe");
             System.out.println("3. Add tags to a recipe");
-            System.out.println("4. List all recipe names");
-            System.out.println("5. View a recipe");
-            System.out.println("6. Seach recipes by tag");
-            System.out.println("7. Scale a recipe"); // Custom method to scale recipe ingredients
-            System.out.println("8. Quit");
+            System.out.println("4. Remove steps from a recipe");
+            System.out.println("5. Remove tags from a recipe");
+            System.out.println("6. List all recipe names");
+            System.out.println("7. View a recipe");
+            System.out.println("8. Seach recipes by tag");
+            System.out.println("9. Scale a recipe"); // Custom method to scale recipe ingredients
+            System.out.println("10. Quit");
             System.out.print("Enter choice: ");
 
             // Read user input for menu choice
@@ -94,12 +96,34 @@ public class Main {
                     break;
 
                 case 4:
+                    // Remove steps from a recipe using the removeSteps() method from Recipe class
+                    System.out.print("Enter the name of the recipe to remove steps from: ");
+                    String recipeToRemoveSteps = scnr.nextLine();
+                    System.out.print("Enter the step to remove: ");
+                    String stepToRemove = scnr.nextLine();
+                    ArrayList<String> stepsToRemove = new ArrayList<>();
+                    stepsToRemove.add(stepToRemove);
+                    myRecipeBox.removeStepsFromRecipe(recipeToRemoveSteps, stepsToRemove);
+                    break;
+
+                case 5:
+                    // Remove tags from a recipe using the removeTags() method from Recipe class
+                    System.out.print("Enter the name of the recipe to remove tags from: ");
+                    String recipeToRemoveTags = scnr.nextLine();
+                    System.out.print("Enter the tag to remove: ");
+                    String tagToRemove = scnr.nextLine();
+                    ArrayList<String> tagsToRemove = new ArrayList<>();
+                    tagsToRemove.add(tagToRemove);
+                    myRecipeBox.removeTagsFromRecipe(recipeToRemoveTags, tagsToRemove);
+                    break;
+
+                case 6:
                     // Print all recipe names using the printAllRecipeNames() method from RecipeBox
                     // class
                     myRecipeBox.printAllRecipeNames();
                     break;
 
-                case 5:
+                case 7:
                     // Print details of a specific recipe using the printAllRecipeDetails() method
                     // from RecipeBox class
                     System.out.print("Enter the name of the recipe to view: ");
@@ -107,14 +131,14 @@ public class Main {
                     myRecipeBox.printAllRecipeDetails(selectedRecipeName);
                     break;
 
-                case 6:
+                case 8:
                     // Search recipes by tag using the searchByTag() method from RecipeBox class
                     System.out.print("Enter the tag to search for: ");
                     String tagToSearch = scnr.nextLine();   
                     myRecipeBox.searchRecipesByTag(tagToSearch);
                     break;
 
-                case 7:
+                case 9:
                     // Scale a recipe using the scaleRecipe() method from Recipe class
                     System.out.print("Enter the name of the recipe to view: ");
                     String recipeToScale = scnr.nextLine();
@@ -142,7 +166,7 @@ public class Main {
                     }
                     break;
 
-                case 8:
+                case 10:
                     // Set quit to true to exit the loop and end the program
                     quit = true;
                     System.out.println("Exiting Recipe Box. Goodbye!");
