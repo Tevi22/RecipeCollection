@@ -241,7 +241,7 @@ public class RecipeBox {
 	 * @param minCalorieRange the minimum calorie range
 	 * @param maxCalorieRange the maximum calorie range
 	 */
-	public void searchRecipesByCalorieRange(int minCalorieRange, int maxCalorieRange) {
+	public void searchRecipesByCalorieRange(double minCalorieRange, double maxCalorieRange) {
 		boolean found = false;
 		for (Recipe recipe : listOfRecipes) {
 			if (recipe.getTotalRecipeCalories() >= minCalorieRange && recipe.getTotalRecipeCalories() <= maxCalorieRange) {
