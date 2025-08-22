@@ -234,5 +234,24 @@ public class RecipeBox {
 		System.out.println("Recipe not found.");
 	}
 
-	//Search by calorie range
+	//Search for recipes by calorie range
+	/**
+	 * Search recipes by calorie range.
+	 * 
+	 * @param minCalorieRange the minimum calorie range
+	 * @param maxCalorieRange the maximum calorie range
+	 */
+	public void searchRecipesByCalorieRange(int minCalorieRange, int maxCalorieRange) {
+		boolean found = false;
+		for (Recipe recipe : listOfRecipes) {
+			if (recipe.getTotalRecipeCalories() >= minCalorieRange && recipe.getTotalRecipeCalories() <= maxCalorieRange) {
+				System.out.println("Found recipe in calorie range: " + recipe.getRecipeName());
+				found = true;
+			}
+		}
+		if (!found) {
+			System.out.println("No recipes found in the specified calorie range.");
+		}
+	}
+
 }
